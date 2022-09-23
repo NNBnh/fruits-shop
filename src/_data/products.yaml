@@ -1,0 +1,104 @@
+- id: 0
+  title: title1title1title1
+  subtitle: subtitle1
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  images: ['https://dummyimage.com/512x512', 'https://dummyimage.com/512x256', 'https://dummyimage.com/256x512']
+  items:
+  - id: 0
+    name: Size 38
+    quantity: 100
+    price: 400
+  - id: 1
+    name: Size 39
+    quantity: 100
+    price: 400
+  - id: 2
+    name: Size 40
+    quantity: 0
+    price: 400
+  - id: 3
+    name: Size 41
+    quantity: 0
+    price: 500
+  - id: 4
+    name: Size 42
+    quantity: 50
+    price: 500
+- id: 1
+  title: title2title2title2
+  subtitle: subtitle1
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  images: ['https://dummyimage.com/512x512', 'https://dummyimage.com/512x256', 'https://dummyimage.com/256x512']
+  items:
+  - id: 0
+    name: Size 38
+    quantity: 100
+    price: 300
+  - id: 1
+    name: Size 39
+    quantity: 100
+    price: 300
+  - id: 2
+    name: Size 40
+    quantity: 100
+    price: 300
+  - id: 3
+    name: Size 41
+    quantity: 100
+    price: 300
+  - id: 4
+    name: Size 42
+    quantity: 100
+    price: 300
+- id: 2
+  title: title3title3title3
+  subtitle: subtitle2
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  images: ['https://dummyimage.com/512x512', 'https://dummyimage.com/512x256', 'https://dummyimage.com/256x512']
+  items:
+  - id: 0
+    name: Size 38
+    quantity: 100
+    price: 200
+  - id: 1
+    name: Size 39
+    quantity: 100
+    price: 200
+  - id: 2
+    name: Size 40
+    quantity: 100
+    price: 200
+  - id: 3
+    name: Size 41
+    quantity: 100
+    price: 200
+  - id: 4
+    name: Size 42
+    quantity: 100
+    price: 200
+- id: 3
+  title: title4title4title4
+  subtitle: subtitle3
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  images: ['https://dummyimage.com/512x512', 'https://dummyimage.com/512x256', 'https://dummyimage.com/256x512']
+  items:
+  - id: 0
+    name: Size 38
+    quantity: 100
+    price: 100
+  - id: 1
+    name: Size 39
+    quantity: 100
+    price: 100
+  - id: 2
+    name: Size 40
+    quantity: 100
+    price: 100
+  - id: 3
+    name: Size 41
+    quantity: 100
+    price: 100
+  - id: 4
+    name: Size 42
+    quantity: 100
+    price: 100

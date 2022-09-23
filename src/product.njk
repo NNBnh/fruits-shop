@@ -1,0 +1,146 @@
+---
+layout: layouts/default.njk
+title: Sản phẩm
+pagination:
+    data: products
+    size: 1
+    alias: product
+permalink: "product/{{ product.id | slug }}/"
+---
+
+<div
+  class="md:container px-5 pt-24 pb-12 mx-auto"
+  x-data="
+    {
+      items: {{ product.items | dump }},
+      currentItem: 0,
+      currentQuantity: 1,
+    }
+  "
+  x-init="
+    currentItem = items[0].id;
+    $watch('currentItem', () => currentQuantity = 1);
+  "
+>
+  <div class="lg:w-4/5 mx-auto flex flex-wrap">
+    <div class="md:w-1/2 w-full md:pr-10 md:py-6 mb-6 md:mb-0">
+      <h2 class="text-sm title-font opacity-75 tracking-widest">
+        {{ product.subtitle }}
+      </h2>
+      <h1 class="text-3xl title-font font-medium mb-4">
+        {{ product.title }}
+      </h1>
+      <div class="flex mb-4">
+        <div
+          class="a2a_kit a2a_kit_size_24 a2a_default_style"
+          data-a2a-icon-color="transparent,#529B03"
+        >
+          <a class="a2a_button_copy_link"></a>
+          <a class="a2a_button_twitter"></a>
+          <a class="a2a_button_facebook"></a>
+          <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+      </div>
+      <p class="leading-relaxed mb-4 text-justify">
+        {{ product.description }}
+      </p>
+      <div class="flex flex-wrap py-4 px-2 gap-2 border-y border-base-300">
+        <template x-for="item in items" :key="item.id">
+          <div :class="item.quantity === 0 ? 'opacity-50' : ''">
+            <button
+              class="btn btn-sm"
+              :class="currentItem === item.id ? 'btn-secondary' : 'btn-accent'"
+              x-text="item.name"
+              @click="currentItem = item.id"
+            ></button>
+          </div>
+        </template>
+      </div>
+      <div class="flex py-4 border-b border-base-300">
+        <span class="opacity-75">Số lượng trong kho:</span>
+        <span
+          class="ml-auto font-bold"
+          x-text="items[currentItem].quantity === 0 ? 'Hết hàng' : items[currentItem].quantity"
+        >0</span>
+      </div>
+      <div class="w-full mt-6 flex items-center place-content-between">
+        <span class="title-font font-medium text-2xl">
+          <span x-text="items[currentItem].price"></span>K
+        </span>
+        <div class="form-control">
+          <div
+            class="input-group bg-transparent"
+            :class="items[currentItem].quantity == 0 ? 'btn-disabled opacity-50' : ''"
+          >
+            <input
+              type="number"
+              class="input input-bordered input-primary w-24"
+              min="1" :max="items[currentItem].quantity"
+              x-model="currentQuantity"
+            >
+            <button
+              class="btn btn-primary"
+              @click="
+                void(0);
+
+                const addedItem = cart.findIndex(item => {
+                  const matchProductId = item.productId === {{ product.id }};
+                  const matchItemId = item.itemId === items[currentItem].id;
+                  return matchProductId && matchItemId;
+                });
+
+                if(addedItem !== -1) { cart.splice(addedItem, 1) };
+
+                cart.push({
+                  productId: {{ product.id }},
+                  itemId: items[currentItem].id,
+                  quantity: currentQuantity,
+                });
+              "
+            >Cho vào giỏ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="md:w-1/2 w-full md:h-auto h-96 bg-base-200 rounded overflow-hidden relative"
+      x-data="{ images: {{ product.images | dump }}, currentImage: 0 }"
+    >
+      <img
+        class="h-full mx-auto object-contain"
+        :src="images[currentImage]"
+      >
+      <button
+        class="absolute btn btn-sm btn-circle inset-y-0 my-auto left-4"
+        @click="currentImage = (currentImage === 0 ? images.length : currentImage) - 1"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+      <button
+        class="absolute btn btn-sm btn-circle inset-y-0 my-auto right-4"
+        @click="currentImage = (currentImage + 1) % images.length"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-4xl px-4 mb-8 mx-auto">
+  <script src="https://giscus.app/client.js"
+    data-repo="nnbnh/fruits-shop"
+    data-repo-id="R_kgDOIDVVDQ"
+    data-category="General"
+    data-category-id="DIC_kwDOIDVVDc4CRlvT"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="vi"
+    crossorigin="anonymous"
+    async
+  ></script>
+</div>

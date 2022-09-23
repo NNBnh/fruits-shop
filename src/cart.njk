@@ -1,0 +1,140 @@
+---
+layout: layouts/default.njk
+title: Giỏ hàng
+---
+
+<div
+  x-show="cart.length === 0"
+  class="h-screen flex flex-col items-center justify-center gap-8"
+>
+  <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+  <p>Giỏ hàng đang trống rỗng ~</p>
+  <a class="btn btn-primary" href="{{ '/' | url }}">Quay lại của hàng</a>
+</div>
+
+<div x-show="cart.length > 0" x-data="{ products: {{ products | dump }} }">
+
+<div class="max-w-4xl pt-24 sm:px-5 mx-auto">
+  <div class="overflow-x-auto w-full">
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th>Sản phẩm</th>
+          <th>Loại</th>
+          <th>Giá</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <template
+          x-for="(cartItem, cartItemIndex) in cart"
+          :key="cartItem.productId + '_' + cartItem.itemId"
+        >
+          <tr
+            x-data="
+              {
+                product: products.find(product => product.id === cartItem.productId),
+                item: {},
+              }
+            "
+            x-init="item = product.items.find(item => item.id === cartItem.itemId)"
+          >
+            <td>
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12">
+                  <img class="rounded" :src="product.images[0]">
+                </div>
+                <div>
+                  <div class="font-bold" x-text="product.title"></div>
+                  <div class="text-sm opacity-50" x-text="product.subtitle"></div>
+                </div>
+              </div>
+            </td>
+            <td x-text="item.name"></td>
+            <td x-text="item.price + 'K'"></td>
+            <td>
+              <input
+                type="number"
+                class="input input-sm input-bordered w-16 mr-2"
+                min="1" :max="item.quantity"
+                x-model="cartItem.quantity"
+              >
+              <button
+                class="btn btn-sm btn-circle btn-outline btn-error"
+                @click="cart.splice(cartItemIndex, 1)"
+              >X</button>
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="max-w-4xl py-24 px-5 mx-auto flex items-center gap-2">
+  <span class="title-font sm:text-2xl">Tổng tiền:</span>
+  <span
+    class="title-font text-xl sm:text-3xl font-bold"
+    x-text="
+      cart.map(cartItem => {
+        return products
+        .find(product => product.id === cartItem.productId).items
+        .find(item => item.id === cartItem.itemId).price * cartItem.quantity;
+      }).reduce((sum, a) => sum + a, 0) + '.000'
+    "
+  >...</span>
+  <sup>VND</sup>
+  <a class="btn btn-primary ml-auto" href="#buy">Đặt hàng</a>
+</div>
+
+<div
+  id="buy"
+  class="body-font relative"
+  x-data="{ userName: '', userAddress: '', userPhoneNumber: '' }"
+>
+  <div class="absolute inset-0 bg-gray-300">
+    <iframe 
+      style="filter: grayscale(1) contrast(1.2) opacity(0.4);"
+      marginheight="0" marginwidth="0" title="map" scrolling="no"
+      src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=HaNoi&ie=UTF8&t=&z=10&iwloc=B&output=embed"
+      width="100%" height="100%" frameborder="0"
+    ></iframe>
+  </div>
+  <div class="container px-5 py-24 mx-auto flex">
+    <div class="lg:w-1/3 md:w-1/2 bg-base-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
+      <h2 class="mx-auto text-lg font-medium title-font">Điền đơn hàng</h2>
+      <div class="form-control w-full my-8">
+        <label class="label">
+          <span class="label-text">Họ và Tên</span>
+        </label>
+        <input
+          type="text"
+          class="input input-bordered w-full"
+          x-model="userName"
+        >
+        <label class="label">
+          <span class="label-text">Địa chỉ giao hàng</span>
+        </label>
+        <input
+          type="text"
+          class="input input-bordered w-full"
+          x-model="userAddress"
+        >
+        <label class="label">
+          <span class="label-text">Số điện thoại</span>
+        </label>
+        <input
+          type="text"
+          class="input input-bordered w-full"
+          x-model="userPhoneNumber"
+        >
+      </div>
+      <label
+        class="btn btn-primary"
+        @click="cart = []; window.location.href = '{{ '/' | url }}'"
+      >Đặt Ngay!</label>
+    </div>
+  </div>
+</div>
+
+</div>

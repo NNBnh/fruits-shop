@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" x-data="{ cart: $persist([]) }">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits Shop - {{ product.title if title === 'Sản phẩm' else title }}</title>
+  	<link rel="icon" href="https://raw.githubusercontent.com/michaelampr/jam/master/icons/store.svg" type="image/svg+xml">
+    {% set css %} {% include "src/styles/index.css" %} {% endset %}
+    <style>{{css | postcss | safe}}</style>
+    <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+  </head>
+  <body class="relative" x-cloak>
+    <div class="navbar z-50 fixed bg-base-200">
+      <div class="flex-1">
+        <a
+          class="btn btn-ghost normal-case text-xl gap-2"
+          href="{{ '/' | url }}"
+        >
+          <svg class="w-6 h-6 text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 96c0-35.3-28.7-64-64-64c-6.6 0-13 1-19 2.9c-22.5 7-48.1 14.9-71 9c-75.2-19.1-156.4 11-213.7 68.3S-7.2 250.8 11.9 326c5.8 22.9-2 48.4-9 71C1 403 0 409.4 0 416c0 35.3 28.7 64 64 64c6.6 0 13-1 19.1-2.9c22.5-7 48.1-14.9 71-9c75.2 19.1 156.4-11 213.7-68.3s87.5-138.5 68.3-213.7c-5.8-22.9 2-48.4 9-71c1.9-6 2.9-12.4 2.9-19.1zM212.5 127.4c-54.6 16-101.1 62.5-117.1 117.1C92.9 253 84 257.8 75.5 255.4S62.2 244 64.6 235.5c19.1-65.1 73.7-119.8 138.9-138.9c8.5-2.5 17.4 2.4 19.9 10.9s-2.4 17.4-10.9 19.9z"/></svg>
+          Fruits Shop
+        </a>
+      </div>
+      <div class="flex-none mr-2">
+        <div class="dropdown dropdown-end">
+          <a class="btn btn-ghost btn-circle" href="{{ '/cart' | url }}">
+            <div class="indicator">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" ></svg>
+              <span
+                class="badge badge-sm badge-primary indicator-item"
+                x-show="cart.length > 0"
+                x-text="cart.length"
+              >...</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    {{ content | safe }}
+    <footer class="footer p-10 bg-base-200 text-base-content">
+      <div>
+        <svg class="w-8 h-8 text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 96c0-35.3-28.7-64-64-64c-6.6 0-13 1-19 2.9c-22.5 7-48.1 14.9-71 9c-75.2-19.1-156.4 11-213.7 68.3S-7.2 250.8 11.9 326c5.8 22.9-2 48.4-9 71C1 403 0 409.4 0 416c0 35.3 28.7 64 64 64c6.6 0 13-1 19.1-2.9c22.5-7 48.1-14.9 71-9c75.2 19.1 156.4-11 213.7-68.3s87.5-138.5 68.3-213.7c-5.8-22.9 2-48.4 9-71c1.9-6 2.9-12.4 2.9-19.1zM212.5 127.4c-54.6 16-101.1 62.5-117.1 117.1C92.9 253 84 257.8 75.5 255.4S62.2 244 64.6 235.5c19.1-65.1 73.7-119.8 138.9-138.9c8.5-2.5 17.4 2.4 19.9 10.9s-2.4 17.4-10.9 19.9z"/></svg>
+        <p>Fruits Shop<br>Copyright &#169; 2022 - All right reserved</p>
+      </div>
+      <div>
+        <span class="footer-title">Liên kết</span>
+        <a class="link link-hover">Facebook</a>
+        <a class="link link-hover">Twitter</a>
+        <a class="link link-hover">Youtube</a>
+      </div>
+      <div>
+        <span class="footer-title">Hỗ trợ</span>
+        <a class="link link-hover">Hướng dẫn đặt hàng</a>
+        <a class="link link-hover">Câu hỏi thường gặp</a>
+        <a class="link link-hover">Các chính sách</a>
+      </div>
+      <div>
+        <span class="footer-title">Công ty</span>
+        <a class="link link-hover">Giới thiệu</a>
+        <a class="link link-hover">Tuyển dụng</a>
+        <a class="link link-hover">Liên hệ</a>
+      </div>
+    </footer>
+  </body>
+</html>

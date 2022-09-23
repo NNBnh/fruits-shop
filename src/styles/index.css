@@ -1,0 +1,8 @@
+@tailwind base;
+
+[x-cloak] {
+  opacity: 0 !important;
+}
+
+@tailwind components;
+@tailwind utilities;
